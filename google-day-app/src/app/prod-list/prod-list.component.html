@@ -1,4 +1,3 @@
-<p>prod-list works!</p>
 <div class="wrapper">
     <mat-form-field>
         <mat-label>Select Language</mat-label>
@@ -16,9 +15,14 @@
 </div>
 
 <div class="wrapper">
-    <label>Result</label>
-    <p class="stands-out" *ngIf="final_transcript">
-        {{final_transcript}}
-    </p>
+    <label>Results:</label>
+    <mat-list *ngIf="final_transcript.length">
+        <mat-list-item *ngFor="let item of final_transcript; let i = index" class="listItem"> 
+                <h3 matLine> {{item}} </h3>
+                <button mat-button color="primary" (click)="removeListitem({item: item, index:i})">X</button>
+                <button mat-button color="primary" (click)="editListitem({item: item, index:i})">edit</button>
+                <button mat-button color="primary" (click)="sendListitem({item: item, index:i})">send</button>
+        </mat-list-item>
+    </mat-list>
 </div>
   

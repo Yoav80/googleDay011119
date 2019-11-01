@@ -14,3 +14,8 @@
     border: 1px solid #e6e5e5;
     padding: 10px;
 }
+
+.listItem {
+    border-bottom: 1px solid #e6e5e5;
+
+}
