@@ -16,8 +16,8 @@
 
 <div class="wrapper">
     <label>Results:</label>
-    <mat-list *ngIf="final_transcript.length">
-        <mat-list-item *ngFor="let item of final_transcript; let i = index" class="listItem"> 
+    <mat-list>
+        <mat-list-item *ngFor="let item of final_transcript; let i = index;" class="listItem"> 
                 <h3 matLine> {{item}} </h3>
                 <button mat-button color="primary" (click)="removeListitem({item: item, index:i})">X</button>
                 <button mat-button color="primary" (click)="editListitem({item: item, index:i})">edit</button>

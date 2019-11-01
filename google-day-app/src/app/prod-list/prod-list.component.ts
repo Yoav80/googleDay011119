@@ -8,6 +8,7 @@ export interface IWindow extends Window {
 export interface Language {
   value: string;
   viewValue: string;
+  index: number;
 }
 
 const {webkitSpeechRecognition} : IWindow = <IWindow>window;
@@ -22,7 +23,7 @@ export class ProdListComponent implements OnInit {
 
   selectedLang: any;
   recognition: any;
-  final_transcript: string[];
+  final_transcript: Array<any>;
   last_result: string = '';
   languages: Language[];
 
@@ -30,8 +31,8 @@ export class ProdListComponent implements OnInit {
     this.final_transcript = [];
     this.last_result = '';
     this.languages = [
-      {value: 'en-US', viewValue: 'English'},
-      {value: 'NL', viewValue: 'Dutch'},
+      {value: 'en-US', viewValue: 'English', index: 1},
+      {value: 'NL', viewValue: 'Dutch', index: 2},
     ];
   }
 
@@ -71,6 +72,8 @@ export class ProdListComponent implements OnInit {
     console.log('removeListitem:', item);
     if (this.final_transcript[index]) {
       this.final_transcript.splice(index, 1);
+
+      this.ref.detectChanges();
     }
   }
 
@@ -81,8 +84,12 @@ export class ProdListComponent implements OnInit {
   sendListitem({item, index}) {
     debugger;
     this.http.get(`/task?text=${item}`)
-    .subscribe((data: any) => {
-      console.log("????? ", data);
-    });
+      .subscribe((data: any) => {
+        console.log("????? ", data);
+      });
+  }
+
+  trackByFn(index, item) {
+    return Math.random()*1000;
   }
 }
