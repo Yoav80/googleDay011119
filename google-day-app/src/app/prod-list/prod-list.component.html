@@ -1,6 +1,5 @@
 <p>prod-list works!</p>
-<p>{{selectedLang}}</p>
-<div class="menu-wrapper">
+<div class="wrapper">
     <mat-form-field>
         <mat-label>Select Language</mat-label>
         <mat-select [(value)]="selectedLang">
@@ -9,6 +8,17 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="accent">Record!</button>
+    <button mat-raised-button 
+        color="accent" 
+        (click)="startButton($event)">
+        Record!
+    </button>
+</div>
+
+<div class="wrapper">
+    <label>Result</label>
+    <p class="stands-out" *ngIf="final_transcript">
+        {{final_transcript}}
+    </p>
 </div>
   

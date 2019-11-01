@@ -17,14 +17,14 @@ const {webkitSpeechRecognition} : IWindow = <IWindow>window;
 })
 export class ProdListComponent implements OnInit {
 
-  public selectedLang: string;
+  public selectedLang: any;
   private recognition: any;
   private final_transcript: string;
   private languages: Language[] = [
-    {value: 'en', viewValue: 'English'},
-    {value: 'nl', viewValue: 'Dutch'},
+    {value: 'en-US', viewValue: 'English'},
+    {value: 'NL', viewValue: 'Dutch'},
   ];
-  
+
   constructor() { }
 
   ngOnInit() {
@@ -39,7 +39,10 @@ export class ProdListComponent implements OnInit {
         console.log('on start', e);
       }
       this.recognition.onresult = (e) => {
-        console.log('onresult', e);
+        console.log('onresult', e.results);
+        const results: SpeechRecognitionResultList = e.results;
+        this.final_transcript = results[0][0].transcript;
+
       }
       this.recognition.onerror = (e) => {
         console.log('onerror', e);
@@ -52,7 +55,7 @@ export class ProdListComponent implements OnInit {
 
   startButton(event) {
     this.final_transcript = '';
-    //this.recognition.lang = select_dialect.value;
+    this.recognition.lang = this.selectedLang;
     this.recognition.start();
   }
 }
