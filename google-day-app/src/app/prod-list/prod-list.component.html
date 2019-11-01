@@ -1,1 +1,14 @@
 <p>prod-list works!</p>
+<p>{{selectedLang}}</p>
+<div class="menu-wrapper">
+    <mat-form-field>
+        <mat-label>Select Language</mat-label>
+        <mat-select [(value)]="selectedLang">
+            <mat-option *ngFor="let lang of languages" [value]="lang.value">
+                {{lang.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="accent">Record!</button>
+</div>
+  
